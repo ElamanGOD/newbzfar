@@ -13,7 +13,7 @@
 	<link rel="stylesheet" href="/css/animate.css">
 	<link rel="stylesheet" href="/css/flexslider.css">
 	<link rel="stylesheet" href="/fonts/icomoon/style.css">
-
+	<link rel="icon" href="assets/img/brand/favicon.png" type="image/png">
 	<link rel="stylesheet" href="/css/bootstrap.css">
 	<link rel="stylesheet" href="/css/style.css">
 
@@ -210,21 +210,9 @@
 							<a class="nav-link" href="/signup.php">Регистрация</a>
 						<?php 
 						} 
-						// checking if user moderator
-						elseif($_SESSION['user_info']->moderator) { ?>
-							<a class="nav-link" href="/admin.php">Админ панель</a>
-							<a class="nav-link" href="/upload.php">Загрузить материалы</a>
-							<a class="nav-link" href="/search.php">Поиск ученика</a>
-							<a class="nav-link" href="/search_material.php">Поиск материала</a>
-							<a class="nav-link" href="/moderate_material.php">Модерация материала</a>
-							<a class="nav-link" href="/logout.php">Выйти</a>
-						<?php 
-						} 
 						// checking if user logged in
-						elseif($_SESSION['user_info']){ ?>
-							<a class="nav-link" href="/upload.php">Загрузить материал</a>
-							<a class="nav-link" href="/search_material.php">Поиск материала</a>
-							<a class="nav-link" href="/logout.php">Выйти</a>
+						elseif($_SESSION['user_info']) { ?>
+							<a class="nav-link" href="/upload.php">Панель управления</a>
 						<?php 
 						} 
 						?>
@@ -234,9 +222,6 @@
 
 		</div>
 	</footer>
-
-
-
 
 	<script src="js/vendor/jquery.min.js"></script>
 	<script src="js/vendor/jquery-migrate-3.0.1.min.js"></script>
@@ -252,48 +237,5 @@
 	<script src="js/custom.js"></script>
 	
 	<script src="js/vendor/bootstrap.min.js"></script>
-
-	<!-- Google Map -->
-    <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-    	<script src="js/google-map.js"></script> -->
-	
-	<script>
-		// document.getElementById("index").onclick = function () {
-		// 	location.href = "index.php";
-		// };
-		// document.getElementById("signin").onclick = function () {
-		// 	location.href = "signin.php";
-		// };
-		// document.getElementById("signup").onclick = function () {
-		// 	location.href = "signup.php";
-		// };
-		// document.getElementById("admin").onclick = function () {
-		// 	location.href = "admin.php";
-		// };
-		// document.getElementById("upload").onclick = function () {
-		// 	location.href = "upload.php";
-		// };
-		// document.getElementById("search").onclick = function () {
-		// 	location.href = "search.php";
-		// };
-		// document.getElementById("logout").onclick = function () {
-		// 	location.href = "logout.php";
-		// };
-		// document.getElementById("logout1").onclick = function () {
-		// 	location.href = "logout.php";
-		// };
-		// document.getElementById("search_material").onclick = function () {
-		// 	location.href = "search_material.php";
-		// };
-		// function changePage(event) {
-		// 	if($(event.target).hasClass('external')) {
-		// 		window.location.href = $(event.target).attr('href');
-		// 		return;
-		// 	}
-		// }
-		// $(function () {
-		// 	$('.nav li').click( changePage );
-		// }
-	</script>
-    </body>
-    </html>
+</body>
+</html>

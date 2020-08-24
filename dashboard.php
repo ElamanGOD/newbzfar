@@ -1,16 +1,9 @@
-<?php 
-    // hiding the warnings
-    //error_reporting(0);
-    // connecting database
-    require "utils/bd.php";
-?>
+
 <!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="Start your development with a Dashboard for Bootstrap 4.">
-  <meta name="author" content="Creative Tim">
   <title>Панель управления</title>
   <!-- Favicon -->
   <link rel="icon" href="assets/img/brand/favicon.png" type="image/png">
@@ -21,6 +14,7 @@
 </head>
 
 <body>
+  <?php if($_SESSION['user_info']){ ?>
   <nav class="sidenav navbar navbar-vertical  fixed-left  navbar-expand-xs navbar-light bg-white" id="sidenav-main">
     <div class="scrollbar-inner">
       <div class="sidenav-header  align-items-center">
@@ -32,21 +26,45 @@
         <div class="collapse navbar-collapse" id="sidenav-collapse-main">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link active" href="examples/dashboard.html">
+              <a class="nav-link <?php if ($_SERVER['REQUEST_URI'] == "/upload.php"){ echo "active"; } ?>" href="/upload.php">
                 <i class="ni ni-cloud-upload-96 text-primary"></i>
-                <a href="/upload.php">
-                    <span class="nav-link-text">Upload</span>
-                </a>
+                  <span class="nav-link-text">Загрузить материал</span>
+              </a>
+            </li>
+            <?php if($_SESSION['user_info']->moderator){ ?>
+            <li class="nav-item">
+              <a class="nav-link <?php if ($_SERVER['REQUEST_URI'] == "/moderate_material.php"){ echo "active"; } ?>" href="/moderate_material.php">
+                <i class="ni ni-check-bold text-primary"></i>
+                  <span class="nav-link-text">Модерация материала</span>
+              </a>
+            </li>
+            <?php } ?>
+            <li class="nav-item">
+              <a class="nav-link <?php if ($_SERVER['REQUEST_URI'] == "/search_material.php"){ echo "active"; } ?>" href="/search_material.php">
+                <i class="fas fa-search text-primary"></i>
+                  <span class="nav-link-text">Поиск материалов</span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="examples/dashboard.html">
-                <i class="ni ni-cloud-upload-96 text-primary"></i>
-                <a href="/upload.php">
-                    <span class="nav-link-text">Upload</span>
-                </a>
+              <a class="nav-link <?php if ($_SERVER['REQUEST_URI'] == "/search.php"){ echo "active"; } ?>" href="/search.php">
+                <i class="fas fa-search text-primary"></i>
+                  <span class="nav-link-text">Поиск ученика</span>
               </a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link <?php if ($_SERVER['REQUEST_URI'] == "/messages.php"){ echo "active"; } ?>" href="/messages.php">
+                <i class="ni ni-send text-primary"></i>
+                  <span class="nav-link-text">Сообщения</span>
+              </a>
+            </li>
+            <?php if($_SESSION['user_info']->moderator){ ?>
+            <li class="nav-item">
+              <a class="nav-link <?php if ($_SERVER['REQUEST_URI'] == "/admin.php"){ echo "active"; } ?>" href="/admin.php">
+                <i class="fas fa-plus text-primary"></i>
+                  <span class="nav-link-text">Управление модераторами</span>
+              </a>
+            </li>
+            <?php } ?>
           </ul>
         </div>
       </div>
@@ -83,43 +101,24 @@
         </div>
       </div>
     </nav>
-    <div class="header bg-primary pb-6">
-      <div class="container-fluid">
-        <div class="header-body">
-          <div class="row align-items-center py-4">
-          </div>
-            
-        </div>
-      </div>
-    </div>
-    <div class="container-fluid mt--6">
+    <div class="container-fluid mt-4">
+    
       <footer class="footer pt-0">
         <div class="row align-items-center justify-content-lg-between">
-          <div class="col-lg-6">
+          <div class="col-lg-12">
             <div class="copyright text-center  text-lg-left  text-muted">
-              &copy; 2020 <a href="https://www.creative-tim.com" class="font-weight-bold ml-1" target="_blank">Creative Tim</a>
+              &copy; 2020 <a href="https://github.com/ElamanGOD" class="font-weight-bold ml-1" target="_blank">Elaman</a>
             </div>
-          </div>
-          <div class="col-lg-6">
-            <ul class="nav nav-footer justify-content-center justify-content-lg-end">
-              <li class="nav-item">
-                <a href="https://www.creative-tim.com" class="nav-link" target="_blank">Creative Tim</a>
-              </li>
-              <li class="nav-item">
-                <a href="https://www.creative-tim.com/presentation" class="nav-link" target="_blank">About Us</a>
-              </li>
-              <li class="nav-item">
-                <a href="http://blog.creative-tim.com" class="nav-link" target="_blank">Blog</a>
-              </li>
-              <li class="nav-item">
-                <a href="https://github.com/creativetimofficial/argon-dashboard/blob/master/LICENSE.md" class="nav-link" target="_blank">MIT License</a>
-              </li>
-            </ul>
           </div>
         </div>
       </footer>
     </div>
   </div>
+  <?php } else { ?>
+      <div style="color: red; font-size:24px;" class="col-12 my-4 text-center">
+        Пожалуйста, <a href="/signin.php">авторизуйтесь</a> или <a href="/signup.php">зарегистрируйтесь</a>
+      </div>
+  <?php } ?>
   <!-- Argon Scripts -->
   <!-- Core -->
   <script src="assets/vendor/jquery/dist/jquery.min.js"></script>
