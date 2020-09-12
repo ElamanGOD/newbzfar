@@ -181,12 +181,12 @@
                 <?php if($user->moderator){ ?>
                   <form action="admin.php" method="post">
                     <input type="hidden" name="user_id" value="<?php echo $user->id; ?>">
-                    <button class="btn btn-sm btn-success" type="submit" name="remove_moderator">Убрать модераторство</button>
+                    <button class="btn btn-sm btn-danger" type="submit" name="remove_moderator">Убрать модераторство</button>
                   </form>
                 <?php } else { ?>
                   <form action="admin.php" method="post">
                     <input type="hidden" name="user_id" value="<?php echo $user->id; ?>">
-                    <button class="btn btn-sm btn-danger" type="submit" name="do_moderator">Сделать модератором</button>
+                    <button class="btn btn-sm btn-success" type="submit" name="do_moderator">Сделать модератором</button>
                   </form>
                 <?php } ?>              
               </td>

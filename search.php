@@ -30,7 +30,7 @@
 </head>
 
 <body>
-  <?php if($_SESSION['user_info']->moderator){ ?>
+  <?php if($_SESSION['user_info']){ ?>
   <nav class="sidenav navbar navbar-vertical  fixed-left  navbar-expand-xs navbar-light bg-white" id="sidenav-main">
     <div class="scrollbar-inner">
       <div class="sidenav-header  align-items-center">
