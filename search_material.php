@@ -3,14 +3,25 @@
     //error_reporting(0);
     // connecting database
     require "utils/bd.php";
-    $data = $_POST;
+    $data = $_GET;
     $errors = array();
+    $data_post = $_POST;
+    if(isset($data_post['delete_file'])){
+      $file = R::findOne("files","id = ?",array($data_post['file_id']));
+      if($file){
+        unlink($file->files);
+        R::trash($file);
+      }
+    }
+
     if(isset($data['do_searchmat'])){
         if(empty(trim($data['search_text']))){
             $errors[] = "Введите запрос для поиска";
         }
         if(empty($errors)){
-            $materials = R::find("materials","topic LIKE ?", array($data['search_text'] . "%" ));
+            //$materials = R::find("materials","topic LIKE ?", array($data['search_text'] . "%" ));
+            $search_text = $data['search_text'];
+            $materials = R::getAll("SELECT materials.topic, files.files, files.id FROM materials, files WHERE files.topic_id = materials.id AND materials.topic LIKE '" . $search_text . "%';");
         }
     }
 ?>
@@ -121,7 +132,7 @@
             <div class="col-4"></div>
             <div class="col-4 text-center">
                 <h1>Поиск материалов</h1>
-                <form action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="post">
+                <form action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="get">
                     <div class="form-group">
                         <input type="text" id="searchinput1" class="form-control" name="search_text">
                     </div>
@@ -131,21 +142,22 @@
                     if($materials){ 
                         foreach($materials as $material){ ?>
                         <div class="my-4 border p-2">
-                            <h3><?php echo $material->topic; ?></h3>
-                            <?php 
-                                $files = R::find("files","topic_id = ? AND moderated = ?",array($material->id , true));
-                                if($files){
-                                    foreach($files as $file){
-                                ?>
-                                        <a href="/<?php echo $file->files; ?>" download><?php echo $file->files; ?></a><br>
-                        <?php 
-                                    }
-                                } else { ?>
-                                    <h5>Материалы по данной теме не были найдены</h5>
-                                <?php } ?>
-                            </div>    
+                            <h3><?php echo $material['topic']; ?></h3>
+                            <a href="/<?php echo $material['files']; ?>" download><?php echo $material['files']; ?></a><br>
+                            <?php if($_SESSION['user_info']->moderator){ ?>
+                              <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+                                <input type="hidden" name="file_id" value="<?php echo $material['id']; ?>">
+                                <button type="submit" name="delete_file" class="btn btn-sm btn-danger my-2">Удалить</button>
+                              </form>
+                            <?php } ?>
+                        </div>    
                     <?php    
                         } 
+                    } else { ?>
+                        <div class="my-4 border p-2">
+                            <h3>Тема не была найдена</h3>
+                        </div>  
+                    <?php 
                     }
                     ?>
                     <?php 
