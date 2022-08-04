@@ -62,6 +62,7 @@
             $user->moderator = false;
             // storing the record
             R::store($user);
+            $_SESSION['user_info'] = $user;
             // redirect to main page
             header('Location: /index.php');   
             die();
@@ -74,7 +75,8 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+    
+    <link rel="icon" href="assets/img/brand/favicon.png" type="image/png">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <style>
@@ -116,26 +118,26 @@
             </div>
             <div class="form-group w-75 mx-auto">
                 <label for="formGroupExampleInput">E-mail</label>
-                <input name="email" type="email" class="form-control" placeholder="Ваш E-mail" required>
+                <input name="email" type="email" class="form-control" placeholder="Ваш E-mail">
             </div>
             <div class="form-group w-75 mx-auto">
-            <label for="formGroupExampleInput">Имя</label>
-                <input name="firstname" type="text" class="form-control" placeholder="Ваше имя" required>
+                <label for="formGroupExampleInput">Имя</label>
+                <input name="firstname" type="text" class="form-control" placeholder="Ваше имя">
             </div>
             <div class="form-group w-75 mx-auto">
-            <label for="formGroupExampleInput">Фамилия</label>
-                <input name="surname" type="text" class="form-control" placeholder="Ваша фамилия" required>
+                <label for="formGroupExampleInput">Фамилия</label>
+                <input name="surname" type="text" class="form-control" placeholder="Ваша фамилия">
             </div>
             <div class="form-group w-75 mx-auto">
-            <label for="formGroupExampleInput">Пароль</label>
-                <input name="password1" type="password" class="form-control" placeholder="Ваш пароль" required>
+                <label for="formGroupExampleInput">Пароль</label>
+                <input name="password1" type="password" class="form-control" placeholder="Ваш пароль" minlength="8">
             </div>
             <div class="form-group w-75 mx-auto">
-            <label for="formGroupExampleInput">Повторите пароль</label>
-                <input name="password2" type="password" class="form-control" placeholder="Повторите пароль" required>
+                <label for="formGroupExampleInput">Повторите пароль</label>
+                <input name="password2" type="password" class="form-control" placeholder="Повторите пароль">
             </div>
             <div class="form-group w-75 mx-auto">
-            <label for="formGroupExampleInput">Выберите класс</label>
+                <label for="formGroupExampleInput">Выберите класс</label>
                 <select name="grade">
                     <option value="7">7 класс</option>
                     <option value="8">8 класс</option>

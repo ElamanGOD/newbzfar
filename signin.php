@@ -50,7 +50,8 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+    
+    <link rel="icon" href="assets/img/brand/favicon.png" type="image/png">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <style>
@@ -92,11 +93,11 @@
             </div>
             <div class="form-group w-75 mx-auto">
                 <label for="formGroupExampleInput">E-mail</label>
-                <input name="email" type="email" class="form-control" placeholder="Ваш E-mail" required>
+                <input name="email" type="email" class="form-control" placeholder="Ваш E-mail">
             </div>
             <div class="form-group w-75 mx-auto">
                 <label for="formGroupExampleInput">Пароль</label>
-                <input name="password" type="password" class="form-control" placeholder="Ваш пароль" required>
+                <input name="password" type="password" class="form-control" placeholder="Ваш пароль">
             </div>
             <div class="form-group pt-4">
                 <button class="btn btn-lg btn-block w-50 btn-success mx-auto" type="submit" name="do_login">Авторизация</button>
